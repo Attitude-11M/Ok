@@ -635,6 +635,7 @@ function CheckQuest()
     end
 end
 
+
 function Hop()
     local PlaceID = game.PlaceId
     local AllIDs = {}
@@ -2497,13 +2498,52 @@ ToggleButton.Draggable = true
 ToggleButton.MouseButton1Click:Connect(function()
 	game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.RightShift,false,game)
 end)
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 
----
+local Window = Rayfield:CreateWindow({
+   Name = "Attitude Hub",
+   LoadingTitle = "Loading",
+   LoadingSubtitle = "by Attitude Wings",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = opbolte, -- Create a custom folder for your hub/game
+      FileName = "Important"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Attitude Hub",
+      Subtitle = "Key System",
+      Note = "Obtain Key",
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"NOOB"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "AttitudeHub[Premium]", HidePremium = false, IntroText =Attitude Hub[Premium]"})
-----------Tab-----------------------
+
+Rayfield:Notify({
+   Title = "Script Executed",
+   Content = "Thanks For using my script",
+   Duration = 2.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
+
+
 local W = Window:MakeTab({
     Name = "Information",
     Icon = "rbxassetid://4483345998",
@@ -8551,17 +8591,16 @@ pcall(function()
     while wait() do
         if _G.AutoEliteHunter then
             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                OrionLib:MakeNotification({
-                    Name = "Tên Script(Noitification)",
-                    Content = "[EN] : Please cancel the farrm level quest (if any)",
-                    Image = "rbxassetid://4483345998",
-                    Time = 9
-                })
-                OrionLib:MakeNotification({
-                    Name = "Tên Script(Noitification)",
-                    Content = "[VN] : Làm ơn hủy nhiệm vụ farrm level(nếu có)",
-                    Image = "rbxassetid://4483345998",
-                    Time = 9
+                       Rayfield:Notify({
+                       Title = "Attitude Hub",
+                       Content = "Please cancel the farm level quest (if any)",
+                       Duration = 6.5,
+                       Image = 4483362458,
+                       Actions = { -- Notification Buttons
+                      Ignore = {
+                     Name = "Okay!",
+                     Callback = function()
+                     print("The user tapped Okay!")
                 })
             end
         end
@@ -8726,11 +8765,20 @@ spawn(function()
         while wait() do
             if _G.AutoObservation then
                 if game:GetService("Players").LocalPlayer.VisionRadius.Value >= 3000 then
-                    OrionLib:MakeNotification({
-                        Name = "Attitude Hub BOT",
-                        Content = "!!You Are Max Point!!",
-                        Image = "rbxassetid://14919714384",
-                        Time = 5
+                    Rayfield:Notify({
+   Title = "Attitude Bot",
+   Content = "U have max points in instinct or disable plae scarf",
+   Duration = 2.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
+      end
+   },
+},
+})
                     })
                     
                     wait(2)
@@ -8875,11 +8923,16 @@ spawn(function()
     if _G.AutoSharkman then
         if Mybeli <= 2500000 or MyFragment <= 5000 then
             wait(2.0)
-            OrionLib:MakeNotification({
-                Name = "Tên Script",
-                Content = "You not have beli or fragment!",
-                Image = "rbxassetid://4483345998",
-                Time = 5
+            Rayfield:Notify({
+   Title = "Attitude Bot",
+   Content = "You dont have sufficent money or fragments",
+   Duration = 2.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
             })
             end
         end
@@ -9036,24 +9089,33 @@ spawn(function()
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
                         end
                     else
-                        OrionLib:MakeNotification({
-                            Name = "Tên Script BOT",
-                            Content = "Not Have Superhuman",
-                            Image = "rbxassetid://14919714384",
-                            Time = 5
+                    Rayfield:Notify({
+   Title = "Attitude Bot",
+   Content = "U dont have Super Human",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                         })
-                        
+                                                        
                     end
                     if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep",true) == 1 then
                         if game.Players.LocalPlayer.Backpack:FindFirstChild("Death Step") and game.Players.LocalPlayer.Backpack:FindFirstChild("Death Step").Level.Value >= 400 or game.Players.LocalPlayer.Character:FindFirstChild("Death Step") and game.Players.LocalPlayer.Character:FindFirstChild("Death Step").Level.Value >= 400 then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
                         end
                     else
-                        OrionLib:MakeNotification({
-                            Name = "Tên Script BOT",
-                            Content = "Not Have Death Step",
-                            Image = "rbxassetid://14919714384",
-                            Time = 5
+ Title = "Attitude Bot",
+   Content = "U dont have Deat Step",
+   Duration = 1.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                         })
                         
                     end
@@ -9062,11 +9124,15 @@ spawn(function()
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
                         end
                     else
-                        OrionLib:MakeNotification({
-                            Name = "Tên Script BOT",
-                            Content = "Not Have SharkMan Karate",
-                            Image = "rbxassetid://14919714384",
-                            Time = 5
+   Title = "Attitude Bot",
+   Content = "U dont have Sharkman Karate",
+   Duration = 1.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                         })
                         
                     end
@@ -9075,22 +9141,30 @@ spawn(function()
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
                         end
                     else
-                        gOrionLib:MakeNotification({
-                            Name = "Attitude Hub BOT",
-                            Content = "Not Have Electric Claw",
-                            Image = "rbxassetid://14919714384",
-                            Time = 5
+   Title = "Attitude Bot",
+   Content = "U dont have Electric Claw",
+   Duration = 1.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                         })
                         
                     end
                     if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon",true) == 1 then
                         if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Talon") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Talon").Level.Value >= 400 or game.Players.LocalPlayer.Character:FindFirstChild("Dragon Talon") and game.Players.LocalPlayer.Character:FindFirstChild("Dragon Talon").Level.Value >= 400 then
                             if string.find(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman",true), "Bring") then
-                                OrionLib:MakeNotification({
-                                    Name = "Attitude Hub BOT",
-                                    Content = "Not Have Enough Material",
-                                    Image = "rbxassetid://14919714384",
-                                    Time = 5
+    Title = "Attitude Bot",
+   Content = "U dont have Enough Material",
+   Duration = 1.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                                 })
                                 
                             else
@@ -9098,11 +9172,15 @@ spawn(function()
                             end
                         end
                     else
-                        OrionLib:MakeNotification({
-                            Name = "Attitude Hub BOT",
-                            Content = "You Not Have Dragon Talon! ",
-                            Image = "rbxassetid://14919714384",
-                            Time = 5
+   Title = "Attitude Bot",
+   Content = "U dont have Dragon Talon",
+   Duration = 1.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                         })
                         
                     end
@@ -11497,35 +11575,51 @@ spawn(function()
             if _G.Hopfindmoon then
             if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
                 wait(2.0)
-                OrionLib:MakeNotification({
-                    Name = "Attitude Hub",
-                    Content = "Turn Off Hop Find Moon Please",
-                    Image = "rbxassetid://4483345998",
-                    Time = 5
+   Title = "Attitude Bot",
+   Content = "Turn off hop find moon plz",
+   Duration = 2.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                 })
             elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
                 Hop()
-                OrionLib:MakeNotification({
-                    Name = "Attitude Hub",
-                    Content = "Hop Server",
-                    Image = "rbxassetid://4483345998",
-                    Time = 5
+                   Title = "Attitude Bot",
+   Content = "Hop server",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                 })
             elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
                 Hop()
-                OrionLib:MakeNotification({
-                    Name = "Attitude Hub",
-                    Content = "Hop Server",
-                    Image = "rbxassetid://4483345998",
-                    Time = 5
+   Title = "Attitude Bot",
+   Content = "Hop Server",
+   Duration = 2.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                 })
             elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
                 Hop()
-                OrionLib:MakeNotification({
-                    Name = "Attitude Hub",
-                    Content = "Hop Server",
-                    Image = "rbxassetid://4483345998",
-                    Time = 5
+   Title = "Attitude Bot",
+   Content = "Hop server",
+   Duration = 6.5,
+   Image = 4483362458,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay!",
+         Callback = function()
+         print("The user tapped Okay!")
                 })
             else
                 Hop()
@@ -11559,5 +11653,3 @@ spawn(function()
         end
     end)
 end)
-
-OrionLib:Init()
